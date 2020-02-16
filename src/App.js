@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import List from "./List";
 
@@ -14,6 +14,11 @@ function App() {
     e.preventDefault();
     setTodos([...todos, newTodo]);
   };
+
+  useEffect(() => {
+    console.log("새로운 내용이 랜더링 됐네요", todos);
+  }, [todos]);
+
   return (
     <div className="App">
       <h1>todo 애플리케이션</h1>
