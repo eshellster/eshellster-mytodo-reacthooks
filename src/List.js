@@ -1,10 +1,8 @@
 import React from "react";
 
-export const List = () => {
-  return (
-    <ul>
-      <li>hooks공부</li>
-      <li>동네한바퀴 돌기</li>
-    </ul>
-  );
+const List = ({ todos }) => {
+  const todosList = todos.map(todo => <li>{todo}</li>);
+  return <ul>{todosList}</ul>;
 };
+
+export default List;
