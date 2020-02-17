@@ -4,7 +4,8 @@ import List from "./List";
 
 function App() {
   const [newTodo, setNewTodo] = useState();
-  const [todos, setTodos] = useState(["js공부", "운동"]);
+  const [todos, setTodos] = useState([]);
+  const [loading, setLoading] = useState();
 
   const changeInputData = e => {
     setNewTodo(e.target.value);
@@ -15,9 +16,21 @@ function App() {
     setTodos([...todos, newTodo]);
   };
 
+  const fetchInitialData = async () => {
+    setLoading(true);
+    const response = await fetch("http://localhost:8080/todo");
+    const initialData = await response.json();
+    setTodos(initialData);
+    setLoading(false);
+  };
+
   useEffect(() => {
     console.log("새로운 내용이 랜더링 됐네요", todos);
   }, [todos]);
+
+  useEffect(() => {
+    fetchInitialData();
+  }, []);
 
   return (
     <div className="App">
@@ -27,7 +40,7 @@ function App() {
         <input type="text" name="" onChange={changeInputData} />
         <button onClick={addTodo}>할일추가</button>
       </form>
-      <List todos={todos} />
+      <List todos={todos} loading={loading} />
     </div>
   );
 }

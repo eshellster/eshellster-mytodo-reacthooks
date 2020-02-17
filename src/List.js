@@ -1,8 +1,8 @@
 import React from "react";
 
-const List = ({ todos }) => {
-  const todosList = todos.map(todo => <li>{todo}</li>);
-  return <ul>{todosList}</ul>;
+const List = ({ todos, loading }) => {
+  const todosList = todos.map(todo => <li key={todo.id}>{todo.title}</li>);
+  return <ul>{loading ? "loading..." : todosList}</ul>;
 };
 
 export default List;
