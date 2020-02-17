@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import List from "./List";
-import useFecth from "./useFecth";
+import useFetch from "./useFetch";
 
 const App = () => {
   const [newTodo, setNewTodo] = useState();
 
   const [todos, setTodos] = useState([]);
-  const loading = useFecth(setTodos, "http://localhost:8080/todo");
+  const loading = useFetch(setTodos, "http://localhost:8080/todo");
 
   const changeInputData = e => {
     setNewTodo(e.target.value);
