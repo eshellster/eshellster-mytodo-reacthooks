@@ -1,21 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import List from "./List";
-
-const useFecth = (callback, url) => {
-  const [loading, setLoading] = useState(false);
-  const fetchInitialData = async () => {
-    setLoading(true);
-    const response = await fetch(url);
-    const initialData = await response.json();
-    callback(initialData);
-    setLoading(false);
-  };
-  useEffect(() => {
-    fetchInitialData();
-  }, []);
-  return loading;
-};
+import useFecth from "./useFecth";
 
 const App = () => {
   const [newTodo, setNewTodo] = useState();
@@ -29,7 +15,10 @@ const App = () => {
 
   const addTodo = e => {
     e.preventDefault();
-    setTodos([...todos, newTodo]);
+    setTodos([
+      ...todos,
+      { id: todos.length + 1, title: newTodo, status: "todo" }
+    ]);
   };
 
   useEffect(() => {
