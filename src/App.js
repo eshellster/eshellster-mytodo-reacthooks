@@ -3,6 +3,7 @@ import "./App.css";
 import List from "./List";
 import useFetch from "./useFetch";
 import Header from "./header";
+import Form from "./Form";
 
 const App = () => {
   const [newTodo, setNewTodo] = useState();
@@ -40,10 +41,8 @@ const App = () => {
     <div className="App">
       <Header todos={todos} />
 
-      <form action="">
-        <input type="text" name="" onChange={changeInputData} />
-        <button onClick={addTodo}>할일추가</button>
-      </form>
+      <Form addTodo={addTodo} changeInputData={changeInputData} />
+
       <List
         todos={todos}
         loading={loading}
