@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Header.css";
-const header = ({ todos }) => {
+import { TodoContext } from "./App";
+
+const Header = () => {
+  const { todos } = useContext(TodoContext);
   return (
     <div>
       <h1>Hello Todo 애플리케이션</h1>
@@ -11,4 +14,4 @@ const header = ({ todos }) => {
   );
 };
 
-export default header;
+export default Header;
