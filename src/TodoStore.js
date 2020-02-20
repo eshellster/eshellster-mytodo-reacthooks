@@ -8,19 +8,13 @@ import Form from "./Form";
 export const TodoContext = React.createContext();
 
 const App = () => {
-  const [newTodo, setNewTodo] = useState();
-
   const [todos, setTodos] = useState([]);
   const loading = useFetch(setTodos, "http://localhost:8080/todo");
-  const changeInputData = e => {
-    setNewTodo(e.target.value);
-  };
 
-  const addTodo = e => {
-    e.preventDefault();
+  const addTodo = newTodoTitle => {
     setTodos([
       ...todos,
-      { id: todos.length + 1, title: newTodo, status: "todo" }
+      { id: todos.length + 1, title: newTodoTitle, status: "todo" }
     ]);
   };
 
@@ -40,9 +34,7 @@ const App = () => {
   }, [todos]);
 
   return (
-    <TodoContext.Provider
-      value={{ todos, addTodo, changeInputData, loading, changeTodoStatus }}
-    >
+    <TodoContext.Provider value={{ todos, addTodo, loading, changeTodoStatus }}>
       <div className="App">
         <Header />
 
