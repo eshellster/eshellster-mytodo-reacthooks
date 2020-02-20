@@ -40,17 +40,15 @@ const App = () => {
   }, [todos]);
 
   return (
-    <TodoContext.Provider value={{ todos }}>
+    <TodoContext.Provider
+      value={{ todos, addTodo, changeInputData, loading, changeTodoStatus }}
+    >
       <div className="App">
         <Header />
 
-        <Form addTodo={addTodo} changeInputData={changeInputData} />
+        <Form />
 
-        <List
-          todos={todos}
-          loading={loading}
-          changeTodoStatus={changeTodoStatus}
-        />
+        <List />
       </div>
     </TodoContext.Provider>
   );
